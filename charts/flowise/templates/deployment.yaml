@@ -154,6 +154,8 @@ spec:
             - name: DATABASE_PATH
               value: /data
             {{- if or .Values.mariadb.enabled .Values.externalMariadb.enabled }}
+            - name: APIKEY_STORAGE_TYPE
+              value: db
             - name: DATABASE_TYPE
               value: mysql
             - name: DATABASE_HOST
@@ -171,6 +173,8 @@ spec:
               value: {{ include "flowise.mariadb.database" . | quote }}
             {{- end }}
             {{- if or .Values.postgresql.enabled .Values.externalPostgresql.enabled }}
+            - name: APIKEY_STORAGE_TYPE
+              value: db
             - name: DATABASE_TYPE
               value: postgres
             - name: DATABASE_HOST
